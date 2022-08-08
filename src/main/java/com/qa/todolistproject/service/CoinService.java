@@ -65,4 +65,12 @@ public class CoinService {
 		}
 	}
 
+	public Coin save(Coin oldCoin, Long id) {
+		Optional<Coin> currentCoin = this.repo.findById(id);
+		Coin coin = currentCoin.get();
+		coin.setInCollection(oldCoin.getInCollection());
+		return this.repo.save(oldCoin);
+
+	}
+
 }
