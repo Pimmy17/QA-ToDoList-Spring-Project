@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,14 +51,22 @@ public class CoinController {
 	public ResponseEntity<Coin> getCoinById(@PathVariable Long id) {
 		Coin singleCoin = service.findCoinById(id);
 		return new ResponseEntity<Coin>(singleCoin, HttpStatus.OK);
-
 	}
 
-	@PutMapping("/updateCoin/{id}")
-	public ResponseEntity<Boolean> updateCoin(@RequestBody Coin coin, @PathVariable Long id) {
-		Boolean updateCoin = service.updateById(coin, id);
-		return (updateCoin) ? new ResponseEntity<Boolean>(updateCoin, HttpStatus.OK)
-				: new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+//	@PatchMapping("updateCoin/{id}")
+//	public ResponseEntity<Boolean> updateCoin(@RequestBody Coin coin, @PathVariable Long id) {
+//		Boolean updateCoin = service.updateById(coin, id);
+//		return (updateCoin) ? new ResponseEntity<Boolean>(updateCoin, HttpStatus.OK)
+//				: new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
+//	}
+
+	@PatchMapping("updateCoin/{id}")
+	public ResponseEntity<Coin> updateCoin(@PathVariable Long id, @RequestBody Coin coin) {
+		Coin oldCoin = this.service.findCoinById(id);
+
+		oldCoin.setInCollection(coin.getInCollection());
+		final Coin updatedCoin = this.service.save(oldCoin, id);
+		return ResponseEntity.ok(updatedCoin);
 	}
 
 	@DeleteMapping("/deleteCoin/{id}")

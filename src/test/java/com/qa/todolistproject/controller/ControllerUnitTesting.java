@@ -3,8 +3,8 @@ package com.qa.todolistproject.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -85,18 +85,18 @@ public class ControllerUnitTesting {
 	// Test a successful update coin by id
 	// ***************************Not working currently****************************
 	@Test
-	public void updateCoinById_ValidCoin_UpdateCoin() throws Exception {
+	public void updateCoinById_AddToCollection_UpdateCoin() throws Exception {
 		Coin testCoin = new Coin(1L, "Letter 'A' 10 Pence", 2020, "Part of the Alphabet Coin Series", "10 Pence",
 				"United Kingdom", false);
 		Coin newCoin = new Coin();
-		testCoin.setCoin_name("Letter 'C' 10 Pence");
+		testCoin.setInCollection(true);
 		String testCoinAsJSON = this.mapper.writeValueAsString(testCoin);
 
 		Mockito.when(this.service.updateById(newCoin, testCoin.getId())).thenReturn(true);
 
-		mvc.perform(put("/updateCoin/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(patch("/updateCoin/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON))
-				.andExpect(jsonPath("coin_name", is(testCoin.getCoin_name())));
+				.andExpect(jsonPath("inCollection", is(testCoin.getInCollection())));
 	}
 
 	// Test a successful delete by id

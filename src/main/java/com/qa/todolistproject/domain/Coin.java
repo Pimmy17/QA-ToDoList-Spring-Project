@@ -30,7 +30,7 @@ public class Coin {
 	private String country;
 
 	@NotNull
-	private Boolean inCollection = false;
+	private Boolean inCollection;
 
 	public Coin() {
 	}
