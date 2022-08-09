@@ -18,7 +18,7 @@ import com.qa.todolistproject.domain.Coin;
 import com.qa.todolistproject.service.CoinService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/home")
 public class CoinController {
 
 	@Autowired
@@ -26,11 +26,6 @@ public class CoinController {
 
 	public CoinController(CoinService coinService) {
 		this.service = coinService;
-	}
-
-	@GetMapping("/home")
-	public String homePage() {
-		return "<h1>Welcome!</h1>";
 	}
 
 	// Works
