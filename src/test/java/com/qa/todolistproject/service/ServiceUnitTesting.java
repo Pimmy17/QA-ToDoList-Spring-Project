@@ -94,4 +94,19 @@ public class ServiceUnitTesting {
 		this.service.deleteByCoinID(invalidCoin.getId());
 	}
 
+	// Testing a successful save coin where a patch has occurred
+	@Test
+	public void saveCoin_ValidCoin_SavedCoin() {
+		Coin coin = new Coin(1L, "One Pound", 1997, "Round Coin", "1 Pound", "UK", false);
+
+		Coin newCoin = new Coin();
+		coin.setInCollection(true);
+
+		Mockito.when(this.repo.findById(coin.getId())).thenReturn(Optional.of(coin));
+		this.service.save(newCoin, coin.getId());
+
+		Mockito.verify(this.repo, Mockito.times(1)).save(newCoin);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(coin.getId());
+	}
+
 }
