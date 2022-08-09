@@ -79,6 +79,23 @@ public class ControllerUnitTesting {
 				.andExpect(jsonPath("year", is(testCoin.getYear())));
 	}
 
+	// Test a successful read coins in the collection
+	@Test
+	public void readCoinsInCollection_ValidCoins_Successful() throws Exception {
+		List<Coin> testCoin = new ArrayList<>();
+		testCoin.add(new Coin(1L, "2 Pound", 1997, "Bi-metallic Coin", "2 Pound", "United Kingdom", false));
+		testCoin.add(new Coin(1L, "One Pound", 1997, "Round Coin", "1 Pound", "UK", true));
+
+		String testCoinAsJSON = this.mapper.writeValueAsString(testCoin);
+
+		Mockito.when(this.service.allCoinsInCollection()).thenReturn(testCoin);
+
+		mvc.perform(get("/coins/mycollection").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON));
+
+		Mockito.verify(this.service, Mockito.times(1)).allCoinsInCollection();
+	}
+
 	// Test a successful update coin by id
 	// ***************************Not working currently****************************
 //	@Test

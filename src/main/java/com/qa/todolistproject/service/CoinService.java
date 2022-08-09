@@ -34,6 +34,14 @@ public class CoinService {
 		return this.repo.findAll();
 	}
 
+	public List<Coin> allCoinsInCollection() {
+		return this.repo.allCoinsInCollection();
+	}
+
+//	public List<Coin> allCountryCoins(String country) {
+//		return this.repo.findByCountry(country);
+//	}
+
 	// Update
 	public boolean updateById(Coin updateCoin, Long id) {
 		Optional<Coin> currentCoin = this.repo.findById(id);

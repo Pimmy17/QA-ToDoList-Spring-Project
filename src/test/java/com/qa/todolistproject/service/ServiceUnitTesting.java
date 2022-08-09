@@ -57,6 +57,30 @@ public class ServiceUnitTesting {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(validCoin.getId());
 	}
 
+	// Testing a successful read of coins in the collection
+	@Test
+	public void readCoinsInCollection_ValidCoins_CoinCollection() {
+		List<Coin> coins = new ArrayList<>();
+		coins.add(new Coin(1L, "One Pound", 1997, "Round Coin", "1 Pound", "UK", false));
+		coins.add(new Coin(2L, "Two Pound", 2000, "Big Round Coin", "2 Pound", "UK", true));
+
+		Mockito.when(this.service.allCoinsInCollection()).thenReturn(coins);
+		assertEquals(coins, this.service.allCoinsInCollection());
+		Mockito.verify(this.repo, Mockito.times(1)).allCoinsInCollection();
+	}
+
+//	@Test
+//	public void readCoinsByCountry_Country_Coins() {
+//		List<Coin> coins = new ArrayList<>();
+//		coins.add(new Coin(1L, "One Pound", 1997, "Round Coin", "1 Pound", "UK", false));
+//		coins.add(new Coin(2L, "One Dollar", 2000, "Round Coin", "1 Dollar", "USA", false));
+//
+//		Mockito.when(this.service.allCountryCoins("UK")).thenReturn(coins);
+//		assertEquals(coins, this.service.allCountryCoins("UK"));
+//		Mockito.verify(this.repo, Mockito.times(1)).findByCountry("UK");
+//
+//	}
+
 	// Testing a successful update by id
 	@Test
 	public void updateCoin_ValidCoin_UpdatedCoin() {

@@ -30,7 +30,7 @@ public class CoinController {
 
 	@GetMapping("/home")
 	public String homePage() {
-		return "<h1>Welcome!</h1>" + "<p> This is the home page </p>";
+		return "<h1>Welcome!</h1>";
 	}
 
 	// Works
@@ -52,6 +52,18 @@ public class CoinController {
 		Coin singleCoin = service.findCoinById(id);
 		return new ResponseEntity<Coin>(singleCoin, HttpStatus.OK);
 	}
+
+	@GetMapping("/coins/mycollection")
+	public ResponseEntity<List<Coin>> getCoinsInCollection() {
+		List<Coin> coinCollection = service.allCoinsInCollection();
+		return new ResponseEntity<List<Coin>>(coinCollection, HttpStatus.OK);
+	}
+
+//	@GetMapping("/coins/{country}")
+//	public ResponseEntity<List<Coin>> getCoinsByCountry(@PathVariable String country) {
+//		List<Coin> countryCoins = service.allCountryCoins(country);
+//		return new ResponseEntity<List<Coin>>(countryCoins, HttpStatus.OK);
+//	}
 
 	@PatchMapping("updateCoin/{id}")
 	public ResponseEntity<Coin> updateCoin(@PathVariable Long id, @RequestBody Coin coin) {
