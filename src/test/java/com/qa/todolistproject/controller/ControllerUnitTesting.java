@@ -44,7 +44,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.addCoin(testCoin)).thenReturn(testCoin);
 
-		mvc.perform(post("/createCoin").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(post("/home/createCoin").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated()).andExpect(content().json(testCoinAsJSON));
 
 		Mockito.verify(this.service, Mockito.times(1)).addCoin(testCoin);
@@ -59,7 +59,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.allCoins()).thenReturn(testCoin);
 
-		mvc.perform(get("/coins").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/home/coins").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON));
 
 		Mockito.verify(this.service, Mockito.times(1)).allCoins();
@@ -73,7 +73,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.findCoinById(testCoin.getId())).thenReturn(testCoin);
 
-		mvc.perform(get("/coins/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/home/coins/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON))
 				.andExpect(jsonPath("coin_name", is(testCoin.getCoin_name())))
 				.andExpect(jsonPath("year", is(testCoin.getYear())));
@@ -90,7 +90,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.allCoinsInCollection()).thenReturn(testCoin);
 
-		mvc.perform(get("/coins/mycollection").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/home/coins/mycollection").content(testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON));
 
 		Mockito.verify(this.service, Mockito.times(1)).allCoinsInCollection();
@@ -107,7 +107,7 @@ public class ControllerUnitTesting {
 //
 //		Mockito.when(this.service.save(testCoin, testCoin.getId())).thenReturn(testCoin);
 //		System.out.println(testCoin);
-//		mvc.perform(patch("/updateCoin/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
+//		mvc.perform(patch("/home/updateCoin/" + testCoin.getId()).contentType(MediaType.APPLICATION_JSON))
 //				.andExpect(status().isOk()).andExpect(content().json(testCoinAsJSON))
 //				.andExpect(jsonPath("inCollection", is(testCoin.getInCollection())));
 //	}
@@ -121,7 +121,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.deleteByCoinID(testCoin.getId())).thenReturn(true);
 
-		mvc.perform(delete("/deleteCoin/" + testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(delete("/home/deleteCoin/" + testCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNoContent());
 	}
 
@@ -134,7 +134,7 @@ public class ControllerUnitTesting {
 
 		Mockito.when(this.service.deleteByCoinID(invalidCoin.getId())).thenReturn(false);
 
-		mvc.perform(delete("/deleteCoin/" + testInvalidCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
+		mvc.perform(delete("/home/deleteCoin/" + testInvalidCoinAsJSON).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
 
 	}
