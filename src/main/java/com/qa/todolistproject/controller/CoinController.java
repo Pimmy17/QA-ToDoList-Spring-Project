@@ -53,19 +53,12 @@ public class CoinController {
 		return new ResponseEntity<Coin>(singleCoin, HttpStatus.OK);
 	}
 
-//	@PatchMapping("updateCoin/{id}")
-//	public ResponseEntity<Boolean> updateCoin(@RequestBody Coin coin, @PathVariable Long id) {
-//		Boolean updateCoin = service.updateById(coin, id);
-//		return (updateCoin) ? new ResponseEntity<Boolean>(updateCoin, HttpStatus.OK)
-//				: new ResponseEntity<Boolean>(HttpStatus.BAD_REQUEST);
-//	}
-
 	@PatchMapping("updateCoin/{id}")
 	public ResponseEntity<Coin> updateCoin(@PathVariable Long id, @RequestBody Coin coin) {
 		Coin oldCoin = this.service.findCoinById(id);
 
 		oldCoin.setInCollection(coin.getInCollection());
-		final Coin updatedCoin = this.service.save(oldCoin, id);
+		Coin updatedCoin = this.service.save(oldCoin, id);
 		return ResponseEntity.ok(updatedCoin);
 	}
 
