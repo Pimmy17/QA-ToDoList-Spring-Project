@@ -2,11 +2,11 @@ package com.qa.todolistproject.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Coin {
@@ -15,45 +15,46 @@ public class Coin {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
+	@Column(nullable = false)
 	private String coin_name;
 
-	@NotNull
+	@Column(nullable = false)
 	private int year;
 
+	@Column(nullable = false)
 	private String coin_description;
 
-	@NotNull
+	@Column(nullable = false)
 	private String denomination;
 
-	@NotNull
+	@Column(nullable = false)
 	private String country;
 
-	@NotNull
-	private Boolean inCollection;
+	@Column(nullable = false)
+	private Boolean incollection;
 
 	public Coin() {
 	}
 
 	public Coin(String coin_name, int year, String coin_description, String denomination, String country,
-			Boolean inCollection) {
+			Boolean incollection) {
 		this.coin_name = coin_name;
 		this.year = year;
 		this.coin_description = coin_description;
 		this.denomination = denomination;
 		this.country = country;
-		this.inCollection = inCollection;
+		this.incollection = incollection;
 	}
 
 	public Coin(Long id, String coin_name, int year, String coin_description, String denomination, String country,
-			Boolean inCollection) {
+			Boolean incollection) {
 		this.id = id;
 		this.coin_name = coin_name;
 		this.year = year;
 		this.coin_description = coin_description;
 		this.denomination = denomination;
 		this.country = country;
-		this.inCollection = inCollection;
+		this.incollection = incollection;
 	}
 
 	public Long getId() {
@@ -105,16 +106,16 @@ public class Coin {
 	}
 
 	public Boolean getInCollection() {
-		return inCollection;
+		return incollection;
 	}
 
-	public void setInCollection(Boolean inCollection) {
-		this.inCollection = inCollection;
+	public void setInCollection(Boolean incollection) {
+		this.incollection = incollection;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(coin_description, coin_name, denomination, country, inCollection, year);
+		return Objects.hash(coin_description, coin_name, denomination, country, incollection, year);
 	}
 
 	@Override
@@ -128,14 +129,14 @@ public class Coin {
 		Coin other = (Coin) obj;
 		return Objects.equals(coin_description, other.coin_description) && Objects.equals(coin_name, other.coin_name)
 				&& Objects.equals(denomination, other.denomination) && Objects.equals(country, other.country)
-				&& Objects.equals(inCollection, other.inCollection) && year == other.year;
+				&& Objects.equals(incollection, other.incollection) && year == other.year;
 	}
 
 	@Override
 	public String toString() {
 		return "Coin [id=" + id + ", coin_name=" + coin_name + ", year=" + year + ", coin_description="
 				+ coin_description + ", denomination=" + denomination + ", country=" + country + ", inCollection="
-				+ inCollection + "]";
+				+ incollection + "]";
 	}
 
 }
