@@ -1,2 +1,7 @@
-INSERT INTO `coin` (`coin_name`, `year`, `denomination`, `in_collection`, `coin_description`, `country`) VALUES ('Five Pence', 1995, '£0.05', false, 'Small Silver Looking Coin', 'UK'),('Two Pounds', 1997, '£2.00', false, 'The Mightiest Coin of them all!', 'UK');
-INSERT INTO `coin` (`coin_name`, `year`, `denomination`, `in_collection`, `coin_description`, `country`) VALUES ('1 Dollar George Washington Mintmark P', 2008, '$1.00', false, 'Commemorative Coin with Georgie\'s face on it', 'USA');
+INSERT INTO coin.coin (COIN_NAME, YEAR, DENOMINATION, INCOLLECTION, COIN_DESCRIPTION, COUNTRY) VALUES 
+('Five Pence', 1995, '£0.05', FALSE, 'Small Silver Looking Coin', 'UK');
+INSERT INTO coin (COIN_NAME, YEAR, DENOMINATION, INCOLLECTION, COIN_DESCRIPTION, COUNTRY) VALUES 
+('Two Pounds', 1997, '£2.00', FALSE, 'The Mightiest Coin of them all!', 'UK');
+INSERT INTO coin (COIN_NAME, YEAR, DENOMINATION, INCOLLECTION, COIN_DESCRIPTION, COUNTRY) VALUES 
+('1 Dollar George Washington Mintmark P', 2008, '$1.00', FALSE, 'Commemorative Coin with Georgie\'s face on it', 'USA');
+
