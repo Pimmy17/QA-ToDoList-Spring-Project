@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,6 +30,7 @@ public class CoinController {
 	}
 
 	// Works
+	@CrossOrigin
 	@PostMapping("/createCoin")
 	public ResponseEntity<Coin> addCoin(@RequestBody Coin coin) {
 		Coin createCoin = service.addCoin(coin);
@@ -36,18 +38,21 @@ public class CoinController {
 	}
 
 	// Works
+	@CrossOrigin
 	@GetMapping("/coins")
 	public ResponseEntity<List<Coin>> getAllCoins() {
 		List<Coin> coinData = service.allCoins();
 		return new ResponseEntity<List<Coin>>(coinData, HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@GetMapping("/coins/{id}")
 	public ResponseEntity<Coin> getCoinById(@PathVariable Long id) {
 		Coin singleCoin = service.findCoinById(id);
 		return new ResponseEntity<Coin>(singleCoin, HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@GetMapping("/coins/mycollection")
 	public ResponseEntity<List<Coin>> getCoinsInCollection() {
 		List<Coin> coinCollection = service.allCoinsInCollection();
@@ -60,6 +65,7 @@ public class CoinController {
 //		return new ResponseEntity<List<Coin>>(countryCoins, HttpStatus.OK);
 //	}
 
+	@CrossOrigin
 	@PatchMapping("updateCoin/{id}")
 	public ResponseEntity<Coin> updateCoin(@PathVariable Long id, @RequestBody Coin coin) {
 		Coin oldCoin = this.service.findCoinById(id);
@@ -69,6 +75,7 @@ public class CoinController {
 		return ResponseEntity.ok(updatedCoin);
 	}
 
+	@CrossOrigin
 	@DeleteMapping("/deleteCoin/{id}")
 	public ResponseEntity<Boolean> deleteCoin(@PathVariable Long id) {
 
