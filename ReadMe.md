@@ -1,5 +1,7 @@
 #QA Spring Project - Online Coin Collection
 
+Test Coverage: 84.9%
+
 This project is the back-end aspect for a full stack project that uses all the knowledge I have gained during the 9 weeks at QA.
 The front-end can be found [here](https://github.com/Pimmy17/QA-CoinCollection-FE).
 Neither the front, nor back end have been hosted, so if you wish to see both in action, you will need to follow the steps on both repos for cloning and running.
