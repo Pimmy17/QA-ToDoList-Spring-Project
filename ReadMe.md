@@ -1,6 +1,6 @@
 #QA Spring Project - Online Coin Collection
 
-Test Coverage: 84.9%
+Test Coverage: 93.4%
 
 This project is the back-end aspect for a full stack project that uses all the knowledge I have gained during the 9 weeks at QA.
 The front-end can be found [here](https://github.com/Pimmy17/QA-CoinCollection-FE).

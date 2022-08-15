@@ -1,12 +1,13 @@
 package com.qa.todolistproject.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+//import javax.validation.constraints.AssertFalse;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class DomainUnitTesting {
 
@@ -19,8 +20,13 @@ public class DomainUnitTesting {
 
 	// Tests the Hashcode and Equals
 	@Test
-	public void testEquals() {
-		EqualsVerifier.simple().forClass(Coin.class).verify();
+	public void testHashcode() {
+		Coin x = new Coin("1 Pound", 2010, "Round Pound", "1 Pound", "United Kingdom", false);
+		Coin y = new Coin("1 Pound", 2010, "Round Pound", "1 Pound", "United Kingdom", false);
+		Coin z = new Coin("2 Pound", 2012, "Big Coin", "Two Pound", "United Kingdom", false);
+		assertTrue(x.equals(y) && y.equals(x));
+		assertFalse(x.equals(z) && y.equals(z));
+		assertTrue(x.hashCode() == y.hashCode());
 	}
 
 	@Test
